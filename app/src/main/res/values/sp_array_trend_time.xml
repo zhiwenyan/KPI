@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="index_trend_time">
+        <item>日图</item>
+        <item>小时图</item>
+    </array>
+
+</resources>

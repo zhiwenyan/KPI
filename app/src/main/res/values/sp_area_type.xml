@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="area_type">
+        <item>按手机归属地</item>
+        <item>按生产工厂</item>
+    </array>
+</resources>

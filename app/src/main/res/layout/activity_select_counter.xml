@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.kpi.activity.SelectCounterActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/selectCounter_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <ImageView
+            android:id="@+id/img_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:padding="16dp"
+            android:src="@mipmap/location"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="工作中"
+            android:textColor="#fff"
+            android:textSize="20sp"/>
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/select_SearchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            app:queryHint="请输入门店..."
+            app:searchIcon="@mipmap/search"/>
+    </android.support.v7.widget.Toolbar>
+
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_below="@+id/selectCounter_toolbar"
+        android:background="#fff"
+        android:clickable="true"/>
+
+    <Button
+        android:id="@+id/btn_poi_next"
+        android:layout_width="72dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/selectCounter_toolbar"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_btn"
+        android:text="下一组数据"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_poi_pre"
+        android:layout_width="72dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/selectCounter_toolbar"
+        android:layout_marginRight="96dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_btn"
+        android:text="上一组数据"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        android:visibility="gone"/>
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btn_poi_next"
+        android:orientation="vertical"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <RadioButton
+            android:id="@+id/rb_map_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="普通地图"
+            android:textColor="#ff0000"/>
+
+        <RadioButton
+            android:id="@+id/rb_map_sate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卫星地图"
+            android:textColor="#ff0000"/>
+    </RadioGroup>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="12dp"
+        android:src="@mipmap/note"/>
+</RelativeLayout>

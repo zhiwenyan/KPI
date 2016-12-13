@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed"
+    android:orientation="vertical"
+    tools:context="com.kpi.activity.SetActivity">
+
+    <TextView
+        android:id="@+id/tv_update_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="修改密码"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+
+    <TextView
+        android:id="@+id/tv_Storm_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:text="消息提醒"
+        android:textColor="#7e7e7e" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <TextView
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="16dp"
+            android:text="声音"
+            android:textColor="#4e4e4e"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/switch_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="16dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="16dp"
+            android:text="震动"
+            android:textColor="#4e4e4e"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/switch_shock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="16dp" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="退出应用"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

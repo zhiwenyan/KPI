@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="unusual_abnormal">
+        <item>日扫码量异常</item>
+        <item>环比增长较快</item>
+        <item>环比减少较快</item>
+    </array>
+
+</resources>

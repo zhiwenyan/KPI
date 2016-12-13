@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="扫码件数各时间段统计"
+        android:textColor="#068bff"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <TextView
+            android:id="@+id/tv_kpi_today"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="当日:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountToday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountWeekName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="7日(十万):"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountWeek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="环:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountWeekMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountTodayMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:text="0"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountMonthName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="月(十万):"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="环:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountMonthMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountYearName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="年(十万):"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="环:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_ScanCountYearMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="扫码件数各时间段统计"
+        android:textColor="#068bff"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="当日:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountToday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountWeekName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="7日:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountWeek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="环:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountWeekMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountTodayMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:text="0"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountMonthName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="当月:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="环:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountMonthMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountYearName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="当年(十万):"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountYear"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="0"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="环:"
+            android:textColor="#585858"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kpi_CustomerCountYearMom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

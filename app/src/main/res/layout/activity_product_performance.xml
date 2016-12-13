@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kpi.activity.IndexTrendActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="产品选择:"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="16sp" />
+
+
+            <Spinner
+                android:id="@+id/sp_product_select"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:entries="@array/product_produce">
+
+            </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="区域选择:"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/sp_product_areaselect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:entries="@array/product_area">
+
+            </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/show_hide_product_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <include layout="@layout/hide_show_datelayout">
+
+            </include>
+        </LinearLayout>
+
+
+        <RadioGroup
+            android:id="@+id/rg_product"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_trend_layout"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_product_today"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_rb_left"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="当天"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/rb_product_week"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_rb_center"
+                android:button="@null"
+                android:gravity="center"
+                android:text="周"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/rb_product_mouth"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_rb_center"
+                android:button="@null"
+                android:gravity="center"
+                android:text="月"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/rb_product_select"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_rb_right"
+                android:button="@null"
+                android:gravity="center"
+                android:text="自选"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/holo_blue_light"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2"
+                android:gravity="center_horizontal"
+                android:text="产品"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="件数"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="环"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="人数"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="环"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/Product_ListView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1px">
+
+        </ListView>
+
+
+        <ImageView
+            android:id="@+id/img_productIndex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </LinearLayout>
+</ScrollView>

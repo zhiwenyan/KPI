@@ -1,0 +1,69 @@
+{
+  "data": {
+    "selectTime": "7",
+    "customerId": "CU160300018104",
+    "DetailList": [
+      {
+        "condition": null,
+        "count": 0,
+        "countMom": "40",
+        "customerId": "统一冰红茶[柠檬](PET500*15)",
+        "database": null,
+        "ddate": null,
+        "ddatefrom": null,
+        "ddatefromMom": null,
+        "ddateto": null,
+        "ddatetoMom": null,
+        "order": null,
+        "pageCount": null,
+        "pageStart": null
+      },
+      {
+        "condition": null,
+        "count": 0,
+        "countMom": "40",
+        "customerId": "统一阿萨姆[原味奶茶](PET500*15)",
+        "database": null,
+        "ddate": null,
+        "ddatefrom": null,
+        "ddatefromMom": null,
+        "ddateto": null,
+        "ddatetoMom": null,
+        "order": null,
+        "pageCount": null,
+        "pageStart": null
+      },
+      {
+        "condition": null,
+        "count": 250,
+        "countMom": "7",
+        "customerId": "统一绿茶[茉莉](PET500*15)",
+        "database": null,
+        "ddate": null,
+        "ddatefrom": null,
+        "ddatefromMom": null,
+        "ddateto": null,
+        "ddatetoMom": null,
+        "order": null,
+        "pageCount": null,
+        "pageStart": null
+      },
+      {
+        "condition": null,
+        "count": 0,
+        "countMom": "1",
+        "customerId": "统一鲜橙多[橙汁饮料](PET450*15)",
+        "database": null,
+        "ddate": null,
+        "ddatefrom": null,
+        "ddatefromMom": null,
+        "ddateto": null,
+        "ddatetoMom": null,
+        "order": null,
+        "pageCount": null,
+        "pageStart": null
+      }
+    ]
+  },
+  "success": true
+}

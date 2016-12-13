@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="product_produce">
+        <item>全部</item>
+        <item>统一冰红茶[柠檬]</item>
+        <item>统一绿茶[茉莉]</item>
+        <item>饮养四季冰糖雪梨[梨汁饮料]</item>
+        <item>统一鲜橙多[橙汁饮料]</item>
+        <item>统一阿萨姆[原味奶茶]</item>
+    </array>
+
+</resources>

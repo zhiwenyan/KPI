@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+
+    <EditText
+        android:id="@+id/ed_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/bg_ed"
+        android:gravity="top|start"
+        android:hint="请输入您的反馈意见（120字以内）"
+        android:maxLength="120"
+        android:padding="4dp"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btn_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ed_feedback"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_btn"
+        android:text="提交"
+        android:textColor="#fff"
+        android:textSize="14sp" />
+</RelativeLayout>

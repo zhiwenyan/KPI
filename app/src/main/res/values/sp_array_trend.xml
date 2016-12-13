@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="index_trend">
+        <item>全部</item>
+        <item>扫码件数</item>
+        <item>扫码人数</item>
+        <item>注册人数</item>
+
+    </array>
+</resources>

@@ -1,0 +1,284 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.kpi.fragment.MyKPIFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/MyKPI_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="我的智码"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+
+        android:id="@+id/Layout_info"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/bg_mykpi_item">
+
+        <com.kpi.view.CircleImageView
+            android:id="@+id/myKpi_photo"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@mipmap/person" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/myKpi_photo"
+            android:layout_toRightOf="@+id/myKpi_photo"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_myKpi_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="David"
+                android:textColor="#df313131" />
+
+            <TextView
+                android:id="@+id/tv_myKpi_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="13845674147"
+                android:textColor="#df313131" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4dp"
+            android:gravity="center_vertical"
+            android:src="@mipmap/right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/infor_bindaccount"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_bindaccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/bindaccount" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_bindaccount"
+            android:text="绑定账号信息"
+            android:textColor="#df313131"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/infor_message"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_zixun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/zixun" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_zixun"
+            android:text="信息资讯"
+            android:textColor="#df313131"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c7c7c7" />
+
+    <RelativeLayout
+        android:id="@+id/beginhelp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/help" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_help"
+            android:text="新手帮助"
+            android:textColor="#df313131"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c7c7c7" />
+
+    <RelativeLayout
+        android:id="@+id/Layout_about_Storm"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/about" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_about"
+            android:text="关于伺动"
+            android:textColor="#df313131"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Layout_kpi_Set"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_kpi_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/kpi_set" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_kpi_set"
+            android:text="账户KPI设置"
+            android:textColor="#df313131"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c7c7c7" />
+
+    <RelativeLayout
+        android:id="@+id/Layout_user_set"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_user_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/user_manager" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_user_set"
+            android:text="账户管理"
+            android:textColor="#df313131"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c7c7c7" />
+
+    <RelativeLayout
+        android:id="@+id/Layout_Set"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/set" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_set"
+            android:text="设置"
+            android:textColor="#df313131"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

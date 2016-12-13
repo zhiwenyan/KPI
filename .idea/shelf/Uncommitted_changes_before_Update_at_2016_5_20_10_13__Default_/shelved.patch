@@ -1,0 +1,1741 @@
+Index: app/src/main/java/com/kpi/activity/MyApp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/MyApp.java	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/java/com/kpi/activity/MyApp.java	(revision )
+@@ -1,15 +1,53 @@
+ package com.kpi.activity;
+ 
++import android.app.Activity;
+ import android.app.Application;
+ 
+ import com.baidu.mapapi.SDKInitializer;
+ 
++import java.util.LinkedList;
+ 
++
+ public class MyApp extends Application {
++
++    private LinkedList<Activity> activitys = null;
++    private static MyApp instance;
++
+     @Override
+     public void onCreate() {
+         super.onCreate();
+         SDKInitializer.initialize(this);
+ 
++    }
++
++    public MyApp() {
++        activitys = new LinkedList<>();
++    }
++
++    public static MyApp getInstance() {
++        if (null == instance) {
++            instance = new MyApp();
++        }
++        return instance;
++    }
++
++    // 添加Activity到容器中
++    public void addActivity(Activity activity) {
++        if (activitys != null && activitys.size() > 0) {
++            if (!activitys.contains(activity)) {
++                activitys.add(activity);
++            }
++        } else {
++            activitys.add(activity);
++        }
++    }
++
++    // 遍历所有Activity并finish
++    public void exit() {
++        if (activitys != null && activitys.size() > 0) {
++            for (Activity activity : activitys) {
++                activity.finish();
++            }
++        }
+     }
+ }
+Index: app/src/main/java/com/kpi/activity/SetActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/SetActivity.java	(revision )
++++ app/src/main/java/com/kpi/activity/SetActivity.java	(revision )
+@@ -0,0 +1,72 @@
++package com.kpi.activity;
++
++import android.content.DialogInterface;
++import android.content.Intent;
++import android.os.Bundle;
++import android.support.v7.app.AlertDialog;
++import android.view.View;
++import android.widget.TextView;
++
++import com.storm.kpi.R;
++
++/**
++ * 设置Activity
++ */
++public class SetActivity extends BaseActivity implements View.OnClickListener {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_set);
++        initToolBar();
++        initView();
++    }
++
++    //初始化头部的ToolBar
++    protected void initToolBar() {
++        if (getSupportActionBar() != null) {
++            getSupportActionBar().setTitle("设置");
++            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
++        }
++    }
++
++    private void initView() {
++        TextView tv_exit = (TextView) findViewById(R.id.tv_exit);
++        TextView tv_update_password = (TextView) findViewById(R.id.tv_update_password);
++        tv_exit.setOnClickListener(this);
++        tv_update_password.setOnClickListener(this);
++
++    }
++
++    @Override
++    public void onClick(View v) {
++        switch (v.getId()) {
++            case R.id.tv_exit:
++                showExitDialog();
++                break;
++            case R.id.tv_update_password:
++                startActivity(new Intent(this, NowPassWordActivity.class));
++                this.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
++                break;
++        }
++    }
++
++    //是否退出程序对话框
++    private void showExitDialog() {
++        new AlertDialog.Builder(this).setTitle("提示").setMessage("确定要退出程序吗？")
++                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
++                    @Override
++                    public void onClick(DialogInterface dialog, int which) {
++                        dialog.dismiss();
++                        startActivity(new Intent(SetActivity.this, LoginActivity.class));
++                        SetActivity.this.finish();
++                        MyApp.getInstance().exit();
++                    }
++                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
++            @Override
++            public void onClick(DialogInterface dialog, int which) {
++                dialog.dismiss();
++            }
++        }).create().show();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_about_strom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_about_strom.xml	(revision )
++++ app/src/main/res/layout/activity_about_strom.xml	(revision )
+@@ -0,0 +1,91 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="#ededed"
++    android:orientation="vertical"
++    tools:context="com.kpi.activity.AboutStormActivity">
++
++
++    <TextView
++
++        android:id="@+id/tv_Storm_info"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_mykpi_item"
++        android:padding="16dp"
++        android:text="伺动简介"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:background="#d9d8d8" />
++    <TextView
++        android:id="@+id/tv_storm_TiaoKuan"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_mykpi_item"
++        android:padding="16dp"
++        android:text="使用条款"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:background="#d9d8d8" />
++
++
++    <TextView
++        android:id="@+id/tv_storm_gradle"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:background="@drawable/bg_mykpi_item"
++        android:padding="16dp"
++        android:text="去评分"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:background="#d9d8d8" />
++
++    <TextView
++        android:id="@+id/tv_storm_version"
++
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:background="@drawable/bg_mykpi_item"
++        android:padding="16dp"
++        android:text="新版本"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:background="#d9d8d8" />
++
++    <TextView
++        android:id="@+id/tv_storm_advice"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:background="@drawable/bg_mykpi_item"
++        android:padding="16dp"
++        android:text="反馈"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:background="#d9d8d8" />
++
++
++</LinearLayout>
+Index: app/src/main/java/com/kpi/activity/NowPassWordActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/NowPassWordActivity.java	(revision )
++++ app/src/main/java/com/kpi/activity/NowPassWordActivity.java	(revision )
+@@ -0,0 +1,41 @@
++package com.kpi.activity;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.support.v7.widget.Toolbar;
++import android.view.View;
++import android.widget.Button;
++
++import com.storm.kpi.R;
++
++/**
++ * 更新密码----》现有密码
++ */
++public class NowPassWordActivity extends BaseActivity implements View.OnClickListener {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_update_pass_word);
++        Button btn_now_next = (Button) findViewById(R.id.btn_now_next);
++        btn_now_next.setOnClickListener(this);
++        initToolBar();
++    }
++
++    //初始化头部的ToolBar
++    protected void initToolBar() {
++        Toolbar toolbar = (Toolbar) findViewById(R.id.now_password_toolbar);
++        setSupportActionBar(toolbar);
++        if (getSupportActionBar() != null) {
++            getSupportActionBar().setTitle("");
++            getSupportActionBar().setHomeAsUpIndicator(R.mipmap.left);
++            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
++        }
++    }
++
++    @Override
++    public void onClick(View v) {
++        startActivity(new Intent(this, UpdatePasswordActivity.class));
++        this.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
++    }
++}
+Index: app/src/main/java/com/kpi/activity/AboutStormActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/AboutStormActivity.java	(revision )
++++ app/src/main/java/com/kpi/activity/AboutStormActivity.java	(revision )
+@@ -0,0 +1,56 @@
++package com.kpi.activity;
++
++import android.content.Intent;
++import android.net.Uri;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.TextView;
++
++import com.storm.kpi.R;
++
++/**
++ * 关于伺动
++ */
++public class AboutStormActivity extends BaseActivity implements View.OnClickListener {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_about_strom);
++        initToolBar();
++        initView();
++    }
++
++    protected void initToolBar() {
++        if (getSupportActionBar() != null) {
++            getSupportActionBar().setTitle("关于伺动");
++            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
++        }
++    }
++
++    private void initView() {
++        TextView tv_storm_advice = (TextView) findViewById(R.id.tv_storm_advice);
++        TextView tv_storm_gradle = (TextView) findViewById(R.id.tv_storm_gradle);
++        tv_storm_advice.setOnClickListener(this);
++        tv_storm_gradle.setOnClickListener(this);
++    }
++
++    @Override
++    public void onClick(View v) {
++        Intent intent = null;
++        switch (v.getId()) {
++            case R.id.tv_storm_advice:
++                intent = new Intent(this, FeedBackActivity.class);
++                break;
++            case R.id.tv_storm_gradle:
++                //打开第三方的Market
++                Uri uri = Uri.parse("market://details?id=" + getPackageName());
++                intent = new Intent(Intent.ACTION_VIEW, uri);
++                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
++                break;
++        }
++        startActivity(intent);
++        this.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
++
++    }
++}
+Index: app/src/main/res/layout/activity_set.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_set.xml	(revision )
++++ app/src/main/res/layout/activity_set.xml	(revision )
+@@ -0,0 +1,100 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="#ededed"
++    android:orientation="vertical"
++    tools:context="com.kpi.activity.SetActivity">
++
++    <TextView
++        android:id="@+id/tv_update_password"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_mykpi_item"
++        android:padding="16dp"
++        android:text="修改密码"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:background="#d9d8d8" />
++
++
++    <TextView
++        android:id="@+id/tv_Storm_info"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginLeft="8dp"
++        android:padding="8dp"
++        android:text="消息提醒"
++        android:textColor="#7e7e7e" />
++
++    <RelativeLayout
++        android:layout_width="match_parent"
++
++        android:layout_height="wrap_content"
++        android:background="#fff">
++
++        <TextView
++            android:layout_width="wrap_content"
++
++            android:layout_height="wrap_content"
++            android:layout_alignParentLeft="true"
++            android:padding="16dp"
++            android:text="声音"
++            android:textColor="#4e4e4e"
++            android:textSize="16sp" />
++
++        <Switch
++            android:id="@+id/switch_voice"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentRight="true"
++            android:padding="16dp" />
++    </RelativeLayout>
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:background="#d9d8d8" />
++
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:background="#fff">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentLeft="true"
++            android:padding="16dp"
++            android:text="震动"
++            android:textColor="#4e4e4e"
++            android:textSize="16sp" />
++
++        <Switch
++            android:id="@+id/switch_shock"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentRight="true"
++            android:padding="16dp" />
++    </RelativeLayout>
++
++
++    <TextView
++        android:id="@+id/tv_exit"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_mykpi_item"
++        android:padding="16dp"
++        android:text="退出应用"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++
++</LinearLayout>
+Index: app/src/main/java/com/kpi/activity/FeedBackActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/FeedBackActivity.java	(revision )
++++ app/src/main/java/com/kpi/activity/FeedBackActivity.java	(revision )
+@@ -0,0 +1,46 @@
++package com.kpi.activity;
++
++import android.os.Bundle;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++
++import com.kpi.utils.ToastUtils;
++import com.storm.kpi.R;
++
++
++/**
++ * 反馈
++ */
++public class FeedBackActivity extends BaseActivity implements View.OnClickListener {
++    private EditText editText;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_feed_back);
++        initToolBar();
++        initView();
++
++    }
++
++    private void initView() {
++        editText = (EditText) findViewById(R.id.ed_feedback);
++        Button button = (Button) findViewById(R.id.btn_feedback);
++        button.setOnClickListener(this);
++    }
++
++    protected void initToolBar() {
++        if (getSupportActionBar() != null) {
++            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
++            getSupportActionBar().setTitle("反馈");
++        }
++    }
++
++    @Override
++    public void onClick(View v) {
++        if (editText.getText().toString().length() == 0) {
++            ToastUtils.showMessage(this, "请输入你的反馈意见!");
++        }
++    }
++}
+Index: app/src/main/res/layout/password.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/password.xml	(revision )
++++ app/src/main/res/layout/password.xml	(revision )
+@@ -0,0 +1,84 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:orientation="vertical">
++
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:padding="8dp">
++
++        <ImageView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_vertical"
++            android:src="@mipmap/password" />
++
++        <android.support.design.widget.TextInputLayout
++            android:id="@+id/password_TextInputLayout1"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++
++            <EditText
++                android:id="@+id/ed_reg_password1"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center_vertical"
++                android:layout_marginLeft="8dp"
++                android:background="@null"
++                android:hint="请输入密码"
++                android:inputType="textPassword"
++                android:singleLine="true" />
++        </android.support.design.widget.TextInputLayout>
++
++    </LinearLayout>
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:layout_marginTop="8dp"
++        android:background="@color/colorPrimary" />
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:padding="8dp">
++
++        <ImageView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_vertical"
++            android:src="@mipmap/password" />
++
++        <android.support.design.widget.TextInputLayout
++            android:id="@+id/password_TextInputLayout2"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++
++            <EditText
++                android:id="@+id/ed_reg_password2"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center_vertical"
++                android:layout_marginLeft="8dp"
++                android:background="@null"
++                android:hint="请在一次输入密码"
++                android:inputType="textPassword"
++                android:singleLine="true" />
++        </android.support.design.widget.TextInputLayout>
++
++
++    </LinearLayout>
++
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:layout_marginTop="8dp"
++        android:background="@color/colorPrimary" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/kpi/activity/ForgotPassWordActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/ForgotPassWordActivity.java	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/java/com/kpi/activity/ForgotPassWordActivity.java	(revision )
+@@ -7,19 +7,15 @@
+ /**
+  * 找回密码
+  */
+-public class ForgotPassWordActivity extends BaseActivity {
++public class ForgotPassWordActivity extends BasePassWordActivity {
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_forgot_pass_word);
+-        initToolBar();
+     }
+ 
+-    protected void initToolBar() {
+-        if (getSupportActionBar() != null) {
+-            getSupportActionBar().setTitle("找回密码");
+-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+-        }
++    @Override
++    protected int getLayoutId() {
++        return R.layout.activity_forgot_pass_word;
+     }
+ }
+Index: app/src/main/java/com/kpi/activity/PassWordActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/PassWordActivity.java	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/java/com/kpi/activity/PassWordActivity.java	(revision )
+@@ -1,80 +1,20 @@
+ package com.kpi.activity;
+ 
+ import android.os.Bundle;
+-import android.support.design.widget.TextInputLayout;
+-import android.support.v7.widget.Toolbar;
+-import android.view.View;
+-import android.widget.Button;
+-import android.widget.EditText;
+ 
+-import com.kpi.utils.ToastUtils;
+ import com.storm.kpi.R;
+ 
+ /**
+  * 填写密码
+  */
+-public class PassWordActivity extends BaseActivity implements View.OnClickListener {
+-    private EditText ed_password1;
+-    private EditText ed_password2;
+-    private TextInputLayout textInputLayout1;
+-    private TextInputLayout textInputLayout2;
+-
++public class PassWordActivity extends BasePassWordActivity {
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_pass_word);
+-        initTooBar();
+-        initView();
+     }
+ 
+-
+-    private void initTooBar() {
+-        Toolbar toolbar = (Toolbar) findViewById(R.id.password_toolbar);
+-        setSupportActionBar(toolbar);
+-        if (getSupportActionBar() != null) {
+-            if (getSupportActionBar() != null) {
+-                getSupportActionBar().setTitle("");
+-                getSupportActionBar().setHomeAsUpIndicator(R.mipmap.left);
+-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+-            }
+-        }
+-
+-    }
+-
+-    private void initView() {
+-        textInputLayout1 = (TextInputLayout) findViewById(R.id.password_TextInputLayout1);
+-        textInputLayout2 = (TextInputLayout) findViewById(R.id.password_TextInputLayout2);
+-        ed_password1 = (EditText) findViewById(R.id.ed_reg_password1);
+-        ed_password2 = (EditText) findViewById(R.id.ed_reg_password2);
+-        Button btn_reg_finish = (Button) findViewById(R.id.btn_register_finish);
+-        btn_reg_finish.setOnClickListener(this);
+-    }
+-
+-
+     @Override
+-    public void onClick(View v) {
+-        if (checkPassword()) {
+-            ToastUtils.showMessage(this, "注册成功!");
+-        }
+-    }
+-
+-    private boolean checkPassword() {
+-        if (ed_password1.getText().toString().equals("") || ed_password2.getText().toString().equals("")) {
+-            ToastUtils.showMessage(this, "请输入密码!");
+-            return false;
+-        }
+-        if (textInputLayout1.getEditText().getText().length() < 8) {
+-            textInputLayout1.getEditText().setError("密码不能少于8位");
+-            return false;
+-        }
+-        if (textInputLayout1.getEditText().getText().length() > 16) {
+-            textInputLayout1.getEditText().setError("密码最多16位");
+-            return false;
+-        }
+-        if (!ed_password1.getText().toString().equals(textInputLayout2.getEditText().getText().toString())) {
+-            textInputLayout2.getEditText().setError("两次密码不一致");
+-            return false;
+-        }
+-        return true;
++    protected int getLayoutId() {
++        return R.layout.activity_pass_word;
+     }
+ }
+Index: app/src/main/res/drawable/bg_update_layout.xml
+===================================================================
+--- app/src/main/res/drawable/bg_update_layout.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/drawable/bg_update_layout.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+-    <item android:drawable="@android:color/white" android:state_pressed="false">
+-
+-    </item>
+-    <item android:drawable="@android:color/darker_gray" android:state_pressed="true">
+-
+-    </item>
+-</selector>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ .idea/misc.xml	(revision )
+@@ -37,7 +37,7 @@
+     <ConfirmationsSetting value="0" id="Add" />
+     <ConfirmationsSetting value="0" id="Remove" />
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_pass_word.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_pass_word.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/layout/activity_pass_word.xml	(revision )
+@@ -1,15 +1,15 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:orientation="vertical"
+     tools:context="com.kpi.activity.RegisterActivity">
+ 
+     <android.support.v7.widget.Toolbar
+         android:id="@+id/password_toolbar"
+         android:layout_width="match_parent"
+         android:layout_height="?attr/actionBarSize"
+-        android:layout_alignParentTop="true"
+         android:background="@color/colorPrimary">
+ 
+ 
+@@ -23,101 +23,26 @@
+             android:textSize="16sp" />
+     </android.support.v7.widget.Toolbar>
+ 
+-    <LinearLayout
++
++    <include
++        layout="@layout/password"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:layout_below="@+id/password_toolbar"
+         android:layout_marginLeft="16dp"
+         android:layout_marginRight="16dp"
+-        android:layout_marginTop="32dp"
+-        android:orientation="vertical">
++        android:layout_marginTop="8dp" />
+ 
+ 
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:padding="8dp">
+-
+-            <ImageView
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:layout_gravity="center_vertical"
+-                android:src="@mipmap/password" />
+-
+-            <android.support.design.widget.TextInputLayout
+-                android:id="@+id/password_TextInputLayout1"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content">
+-
+-                <EditText
+-                    android:id="@+id/ed_reg_password1"
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:layout_gravity="center_vertical"
+-                    android:layout_marginLeft="8dp"
+-                    android:background="@null"
+-                    android:hint="请输入密码"
+-                    android:inputType="textPassword"
+-                    android:singleLine="true" />
+-            </android.support.design.widget.TextInputLayout>
+-
+-        </LinearLayout>
+-
+-        <TextView
+-            android:layout_width="match_parent"
+-            android:layout_height="1px"
+-            android:layout_marginTop="8dp"
+-            android:background="@color/colorPrimary" />
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:padding="8dp">
+-
+-            <ImageView
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:layout_gravity="center_vertical"
+-                android:src="@mipmap/password" />
+-
+-            <android.support.design.widget.TextInputLayout
+-                android:id="@+id/password_TextInputLayout2"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content">
+-
+-                <EditText
+-                    android:id="@+id/ed_reg_password2"
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:layout_gravity="center_vertical"
+-                    android:layout_marginLeft="8dp"
+-                    android:background="@null"
+-                    android:hint="请在一次输入密码"
+-                    android:inputType="textPassword"
+-                    android:singleLine="true" />
+-            </android.support.design.widget.TextInputLayout>
+-
+-
+-        </LinearLayout>
+-
+-        <TextView
+-            android:layout_width="match_parent"
+-            android:layout_height="1px"
+-            android:layout_marginTop="8dp"
+-            android:background="@color/colorPrimary" />
+-
+-
+-        <Button
++    <Button
+-            android:id="@+id/btn_register_finish"
++        android:id="@+id/btn_finish"
+-            android:layout_width="match_parent"
+-            android:layout_height="40dp"
+-            android:layout_gravity="center_horizontal"
++        android:layout_width="match_parent"
++        android:layout_height="40dp"
++        android:layout_gravity="center_horizontal"
++        android:layout_marginLeft="16dp"
++        android:layout_marginRight="16dp"
+-            android:layout_marginTop="16dp"
+-            android:background="@drawable/bg_btn"
+-            android:text="完成注册"
+-            android:textColor="#fff"
+-            android:textSize="16sp" />
+-    </LinearLayout>
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_btn"
++        android:text="完成注册"
++        android:textColor="#fff"
++        android:textSize="16sp" />
++</LinearLayout>
+-</RelativeLayout>
+Index: app/src/main/java/com/kpi/activity/IndexTrendActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/IndexTrendActivity.java	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/java/com/kpi/activity/IndexTrendActivity.java	(revision )
+@@ -73,10 +73,8 @@
+         if (NetUtils.isNetworkConnected(this)) {
+             RequestChartValue();
+         }
+-
+     }
+ 
+-
+     protected void initToolBar() {
+         if (getSupportActionBar() != null) {
+             getSupportActionBar().setTitle("指标趋势图");
+@@ -195,7 +193,6 @@
+         LineDataSet scanCountSet = new LineDataSet(scanCount, "扫码件数");
+         scanCountSet.setColor(Color.RED);
+         scanCountSet.setHighLightColor(Color.RED);
+-
+ 
+         LineDataSet customerCountSet = new LineDataSet(customerCount, "扫码人数");
+         customerCountSet.setColor(Color.BLUE);
+\ No newline at end of file
+Index: app/src/main/java/com/kpi/activity/UpdatePasswordActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/UpdatePasswordActivity.java	(revision )
++++ app/src/main/java/com/kpi/activity/UpdatePasswordActivity.java	(revision )
+@@ -0,0 +1,18 @@
++package com.kpi.activity;
++
++import android.os.Bundle;
++
++import com.storm.kpi.R;
++
++public class UpdatePasswordActivity extends BasePassWordActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++    }
++
++    @Override
++    protected int getLayoutId() {
++        return R.layout.activity_update_password;
++    }
++}
+Index: app/src/main/res/layout/activity_update_password.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_update_password.xml	(revision )
++++ app/src/main/res/layout/activity_update_password.xml	(revision )
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context="com.kpi.activity.UpdatePasswordActivity">
++
++    <android.support.v7.widget.Toolbar
++        android:id="@+id/password_toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="?attr/actionBarSize"
++        android:background="@color/colorPrimary">
++
++
++        <TextView
++            android:id="@+id/tv_info_username"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_horizontal"
++            android:text="找回密码"
++            android:textColor="#fff"
++            android:textSize="16sp" />
++    </android.support.v7.widget.Toolbar>
++
++    <include
++        layout="@layout/password"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginLeft="16dp"
++        android:layout_marginRight="16dp"
++        android:layout_marginTop="8dp" />
++
++    <Button
++        android:id="@+id/btn_finish"
++        android:layout_width="match_parent"
++        android:layout_height="40dp"
++        android:layout_gravity="center_horizontal"
++        android:layout_marginLeft="16dp"
++        android:layout_marginRight="16dp"
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_btn"
++        android:text="完成"
++        android:textColor="#fff"
++        android:textSize="16sp" />
++</LinearLayout>
+Index: app/src/main/res/layout/activity_forgot_pass_word.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_forgot_pass_word.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/layout/activity_forgot_pass_word.xml	(revision )
+@@ -1,8 +1,56 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context="com.kpi.activity.ForgotPassWordActivity">
++    android:orientation="vertical"
++    tools:context="com.kpi.activity.RegisterActivity">
+ 
+-</RelativeLayout>
++
++    <android.support.v7.widget.Toolbar
++        android:id="@+id/password_toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="?attr/actionBarSize"
++        android:background="@color/colorPrimary">
++
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_horizontal"
++            android:text="找回密码"
++            android:textColor="#fff"
++            android:textSize="16sp" />
++    </android.support.v7.widget.Toolbar>
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginLeft="16dp"
++        android:layout_marginTop="16dp"
++        android:padding="8dp"
++        android:text="请重新设置您的密码:"
++        android:textColor="#4e4e4e"
++        android:textSize="16sp" />
++
++    <include
++        layout="@layout/password"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginLeft="16dp"
++        android:layout_marginRight="16dp"
++        android:layout_marginTop="8dp" />
++
++    <Button
++        android:id="@+id/btn_finish"
++        android:layout_width="match_parent"
++        android:layout_height="40dp"
++        android:layout_gravity="center_horizontal"
++        android:layout_marginLeft="16dp"
++        android:layout_marginRight="16dp"
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_btn"
++        android:text="完成"
++        android:textColor="#fff"
++        android:textSize="16sp" />
++</LinearLayout>
+Index: app/src/main/res/layout/fragment_img_dialog.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_img_dialog.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/layout/fragment_img_dialog.xml	(revision )
+@@ -11,7 +11,7 @@
+         android:id="@+id/img_dialog_paizhao"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:background="@drawable/bg_update_layout"
++        android:background="@drawable/bg_mykpi_item"
+         android:gravity="center_horizontal"
+         android:padding="8dp"
+         android:text="拍照"
+@@ -26,7 +26,7 @@
+         android:id="@+id/img_dialog_tuku"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:background="@drawable/bg_update_layout"
++        android:background="@drawable/bg_mykpi_item"
+         android:gravity="center_horizontal"
+         android:padding="8dp"
+         android:text="相册"
+@@ -41,7 +41,7 @@
+         android:id="@+id/img_dialog_cancel"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:background="@drawable/bg_update_layout"
++        android:background="@drawable/bg_mykpi_item"
+         android:gravity="center_horizontal"
+         android:padding="8dp"
+         android:text="取消"
+Index: app/src/main/res/drawable/bg_mykpi_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/bg_mykpi_item.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/drawable/bg_mykpi_item.xml	(revision )
+@@ -3,7 +3,7 @@
+     <item android:drawable="@android:color/white" android:state_pressed="false">
+ 
+     </item>
+-    <item android:drawable="@android:color/darker_gray" android:state_pressed="true">
++    <item android:drawable="@color/colorLayoutPress" android:state_pressed="true">
+ 
+     </item>
+ </selector>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -33,9 +33,7 @@
+         <activity
+             android:name="com.kpi.activity.MainActivity"
+             android:screenOrientation="portrait"
+-            android:theme="@style/AppTheme.NoActionBar">
+-
+-        </activity>
++            android:theme="@style/AppTheme.NoActionBar" />
+         <activity
+             android:name="com.kpi.activity.KpiIndexActivity"
+             android:screenOrientation="portrait" />
+@@ -60,16 +58,13 @@
+         <activity
+             android:name="com.kpi.activity.MyAccountActivity"
+             android:screenOrientation="portrait" />
+-
+         <activity
+             android:name="com.kpi.activity.ContactsAnalystaActivity"
+             android:screenOrientation="portrait" />
+         <activity
+             android:name="com.kpi.activity.StormAboutActivity"
+             android:screenOrientation="portrait" />
+-        <activity android:name="com.kpi.activity.BaseActivity">
+-
+-        </activity>
++        <activity android:name="com.kpi.activity.BaseActivity" />
+         <activity
+             android:name="com.kpi.activity.InfoActivity"
+             android:screenOrientation="portrait"
+@@ -78,31 +73,46 @@
+             android:name="com.kpi.activity.UpdateInfoActivity"
+             android:screenOrientation="portrait"
+             android:theme="@style/AppTheme.NoActionBar" />
+-
+         <activity
+             android:name="com.kpi.activity.LoginActivity"
+             android:screenOrientation="portrait"
+             android:theme="@style/AppTheme.NoActionBar">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
++
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+         <activity
+             android:name="com.kpi.activity.RegisterActivity"
+             android:screenOrientation="portrait"
+-            android:theme="@style/AppTheme.NoActionBar">
+-
+-        </activity>
+-
+-
++            android:theme="@style/AppTheme.NoActionBar" />
+         <activity
+             android:name="com.kpi.activity.PassWordActivity"
+             android:screenOrientation="portrait"
+             android:theme="@style/AppTheme.NoActionBar" />
+-
+         <activity
+             android:name="com.kpi.activity.ForgotPassWordActivity"
++            android:screenOrientation="portrait"
++            android:theme="@style/AppTheme.NoActionBar" />
++        <activity
++            android:name="com.kpi.activity.AboutStormActivity"
+             android:screenOrientation="portrait" />
++        <activity
++            android:name="com.kpi.activity.SetActivity"
++            android:screenOrientation="portrait" />
++        <activity
++            android:name="com.kpi.activity.NowPassWordActivity"
++            android:screenOrientation="portrait"
++            android:theme="@style/AppTheme.NoActionBar" />
++        <activity
++            android:name="com.kpi.activity.UpdatePasswordActivity"
++            android:screenOrientation="portrait"
++            android:theme="@style/AppTheme.NoActionBar" />
++        <activity
++            android:name="com.kpi.activity.FeedBackActivity"
++            android:screenOrientation="portrait" />
++
+     </application>
++
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/com/kpi/activity/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/MainActivity.java	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/java/com/kpi/activity/MainActivity.java	(revision )
+@@ -32,8 +32,8 @@
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.app_bar_main);
++       MyApp.getInstance().addActivity(this);
+         viewPager = (ViewPager) findViewById(R.id.viewPager);
+-
+         initFragment();
+         initViews();
+         initToolBar();
+@@ -172,6 +172,7 @@
+ 
+     public class DepthPageTransformer implements ViewPager.PageTransformer {
+         private static final float MIN_SCALE = 0.75f;
++
+         public void transformPage(View view, float position) {
+             int pageWidth = view.getWidth();
+             if (position < 0) {
+@@ -193,11 +194,12 @@
+ 
+ 
+     private long timeMillis;
++
+     @Override
+     public boolean onKeyDown(int keyCode, KeyEvent event) {
+         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+             if ((System.currentTimeMillis() - timeMillis) > 2000) {
+-                ToastUtils.showMessage(this,"再按一次退出动量智码");
++                ToastUtils.showMessage(this, "再按一次退出动量智码");
+                 timeMillis = System.currentTimeMillis();
+             } else {
+                 finish();
+Index: app/src/main/java/com/kpi/activity/BasePassWordActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/BasePassWordActivity.java	(revision )
++++ app/src/main/java/com/kpi/activity/BasePassWordActivity.java	(revision )
+@@ -0,0 +1,80 @@
++package com.kpi.activity;
++
++import android.os.Bundle;
++import android.support.design.widget.TextInputLayout;
++import android.support.v7.widget.Toolbar;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++
++import com.kpi.utils.ToastUtils;
++import com.storm.kpi.R;
++
++/**
++ * 基类PassWordActivity  -->用于注册用户（设置密码）、找回密码、更新密码
++ */
++public abstract class BasePassWordActivity extends BaseActivity implements View.OnClickListener {
++    private EditText ed_password1;
++    private EditText ed_password2;
++    private TextInputLayout textInputLayout1;
++    private TextInputLayout textInputLayout2;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(getLayoutId());
++        initTooBar();
++        initView();
++    }
++
++    //获取布局Id
++    protected abstract int getLayoutId();
++
++
++    private void initTooBar() {
++        Toolbar toolbar = (Toolbar) findViewById(R.id.password_toolbar);
++        setSupportActionBar(toolbar);
++        if (getSupportActionBar() != null) {
++            getSupportActionBar().setTitle("");
++            getSupportActionBar().setHomeAsUpIndicator(R.mipmap.left);
++            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
++        }
++    }
++
++    private void initView() {
++        textInputLayout1 = (TextInputLayout) findViewById(R.id.password_TextInputLayout1);
++        textInputLayout2 = (TextInputLayout) findViewById(R.id.password_TextInputLayout2);
++        ed_password1 = (EditText) findViewById(R.id.ed_reg_password1);
++        ed_password2 = (EditText) findViewById(R.id.ed_reg_password2);
++        Button btn_reg_finish = (Button) findViewById(R.id.btn_finish);
++        btn_reg_finish.setOnClickListener(this);
++    }
++
++
++    @Override
++    public void onClick(View v) {
++        if (checkPassword()) {
++            ToastUtils.showMessage(this, "注册成功!");
++        }
++    }
++
++    private boolean checkPassword() {
++        if (ed_password1.getText().toString().equals("") || ed_password2.getText().toString().equals("")) {
++            ToastUtils.showMessage(this, "请输入密码!");
++            return false;
++        }
++        if (textInputLayout1.getEditText().getText().length() < 8) {
++            textInputLayout1.getEditText().setError("密码不能少于8位");
++            return false;
++        }
++        if (textInputLayout1.getEditText().getText().length() > 16) {
++            textInputLayout1.getEditText().setError("密码最多16位");
++            return false;
++        }
++        if (!ed_password1.getText().toString().equals(textInputLayout2.getEditText().getText().toString())) {
++            textInputLayout2.getEditText().setError("两次密码不一致");
++            return false;
++        }
++        return true;
++    }
++}
+Index: app/src/main/res/layout/activity_update_pass_word.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_update_pass_word.xml	(revision )
++++ app/src/main/res/layout/activity_update_pass_word.xml	(revision )
+@@ -0,0 +1,71 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context="com.kpi.activity.NowPassWordActivity">
++
++    <android.support.v7.widget.Toolbar
++        android:id="@+id/now_password_toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="?attr/actionBarSize"
++        android:background="@color/colorPrimary">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_horizontal"
++            android:text="找回密码"
++            android:textColor="#fff"
++            android:textSize="16sp" />
++    </android.support.v7.widget.Toolbar>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginLeft="8dp"
++        android:layout_marginTop="16dp"
++        android:orientation="horizontal"
++        android:padding="8dp">
++
++        <ImageView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_vertical"
++            android:src="@mipmap/password" />
++
++
++        <EditText
++            android:id="@+id/ed_nowPassword"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_vertical"
++            android:layout_marginLeft="8dp"
++            android:background="@null"
++            android:hint="请输入现有的密码"
++            android:inputType="textPassword"
++            android:singleLine="true" />
++    </LinearLayout>
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="1px"
++        android:layout_marginLeft="16dp"
++        android:layout_marginTop="8dp"
++        android:background="@color/colorPrimary" />
++
++    <Button
++        android:id="@+id/btn_now_next"
++        android:layout_width="match_parent"
++        android:layout_height="40dp"
++        android:layout_gravity="center_horizontal"
++        android:layout_marginLeft="16dp"
++        android:layout_marginRight="16dp"
++        android:layout_marginTop="16dp"
++        android:background="@drawable/bg_btn"
++        android:text="下一步"
++        android:textColor="#fff"
++        android:textSize="16sp" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_update_info.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_update_info.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/layout/activity_update_info.xml	(revision )
+@@ -3,7 +3,7 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="#e9e8e8"
++    android:background="#ededed"
+     tools:context="com.kpi.activity.UpdateInfoActivity">
+ 
+ 
+@@ -13,7 +13,6 @@
+         android:layout_height="?attr/actionBarSize"
+         android:background="@color/colorPrimary">
+ 
+-
+         <TextView
+             android:id="@+id/tv_info_save"
+             android:layout_width="wrap_content"
+@@ -23,7 +22,6 @@
+             android:text="保存"
+             android:textColor="#fff"
+             android:textSize="16sp" />
+-
+ 
+     </android.support.v7.widget.Toolbar>
+ 
+Index: app/src/main/res/drawable/bg_ed.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/bg_ed.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/drawable/bg_ed.xml	(revision )
+@@ -5,5 +5,5 @@
+     <corners android:radius="8dp" />
+     <stroke
+         android:width="1px"
+-        android:color="@color/colorPrimary" />
++        android:color="#ff0000" />
+ </shape>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -5,4 +5,5 @@
+     <color name="colorAccent">#FF4081</color>
+     <color name="colorbtnPress">#9119fa</color>
+     <color name="colorbtnNormal">#a545fa</color>
++    <color name="colorLayoutPress">#e4e4e4</color>
+ </resources>
+Index: app/src/main/res/layout/activity_info.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_info.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/layout/activity_info.xml	(revision )
+@@ -31,7 +31,7 @@
+         android:id="@+id/update_logo"
+         android:layout_width="match_parent"
+         android:layout_height="72dp"
+-        android:background="@drawable/bg_update_layout">
++        android:background="@drawable/bg_mykpi_item">
+ 
+         <TextView
+             android:layout_width="wrap_content"
+@@ -67,7 +67,7 @@
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+         android:layout_marginTop="8dp"
+-        android:background="@drawable/bg_update_layout">
++        android:background="@drawable/bg_mykpi_item">
+ 
+         <TextView
+             android:layout_width="wrap_content"
+@@ -106,7 +106,7 @@
+         android:id="@+id/update_username"
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+-        android:background="@drawable/bg_update_layout">
++        android:background="@drawable/bg_mykpi_item">
+ 
+         <TextView
+             android:layout_width="wrap_content"
+@@ -145,7 +145,7 @@
+         android:id="@+id/update_sex"
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+-        android:background="@drawable/bg_update_layout">
++        android:background="@drawable/bg_mykpi_item">
+ 
+         <TextView
+             android:layout_width="wrap_content"
+@@ -184,7 +184,7 @@
+         android:id="@+id/update_company"
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+-        android:background="@drawable/bg_update_layout">
++        android:background="@drawable/bg_mykpi_item">
+ 
+         <TextView
+             android:layout_width="wrap_content"
+@@ -224,7 +224,7 @@
+         android:id="@+id/update_job"
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+-        android:background="@drawable/bg_update_layout">
++        android:background="@drawable/bg_mykpi_item">
+ 
+         <TextView
+ 
+@@ -265,7 +265,7 @@
+         android:id="@+id/update_note"
+         android:layout_width="match_parent"
+         android:layout_height="48dp"
+-        android:background="@drawable/bg_update_layout">
++        android:background="@drawable/bg_mykpi_item">
+ 
+         <TextView
+             android:layout_width="wrap_content"
+Index: app/src/main/java/com/kpi/activity/BaseActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/activity/BaseActivity.java	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/java/com/kpi/activity/BaseActivity.java	(revision )
+@@ -7,7 +7,9 @@
+ 
+ import com.storm.kpi.R;
+ 
+-
++/**
++ * 基类Activity
++ */
+ public class BaseActivity extends AppCompatActivity {
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+Index: app/src/main/res/layout/fragment_my_kpi.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_my_kpi.xml	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/res/layout/fragment_my_kpi.xml	(revision )
+@@ -2,16 +2,17 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="#d9d8d8"
++    android:background="#ededed"
+     android:orientation="vertical"
+     tools:context="com.kpi.fragment.MyKPIFragment">
+ 
+     <RelativeLayout
++
++        android:id="@+id/Layout_info"
+         android:layout_width="match_parent"
+         android:layout_height="88dp"
+-        android:background="#ffffff">
++        android:background="@drawable/bg_mykpi_item">
+ 
+-
+         <com.kpi.view.XCRoundImageView
+             android:id="@+id/myKpi_photo"
+             android:layout_width="72dp"
+@@ -51,7 +52,6 @@
+         </LinearLayout>
+ 
+         <ImageView
+-            android:id="@+id/img_info"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+@@ -121,6 +121,7 @@
+         android:background="#c7c7c7" />
+ 
+     <RelativeLayout
++        android:id="@+id/Layout_about_Storm"
+         android:layout_width="match_parent"
+         android:layout_height="46dp"
+         android:layout_marginTop="8dp"
+@@ -146,6 +147,7 @@
+     </RelativeLayout>
+ 
+     <RelativeLayout
++        android:id="@+id/Layout_Set"
+         android:layout_width="match_parent"
+         android:layout_height="46dp"
+         android:layout_marginTop="8dp"
+Index: app/src/main/java/com/kpi/fragment/MyKPIFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/kpi/fragment/MyKPIFragment.java	(revision 2eea8d15991869e319e68a52e927d3425667593b)
++++ app/src/main/java/com/kpi/fragment/MyKPIFragment.java	(revision )
+@@ -7,9 +7,11 @@
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+-import android.widget.ImageView;
++import android.widget.RelativeLayout;
+ 
++import com.kpi.activity.AboutStormActivity;
+ import com.kpi.activity.InfoActivity;
++import com.kpi.activity.SetActivity;
+ import com.storm.kpi.R;
+ 
+ /**
+@@ -17,8 +19,6 @@
+  */
+ public class MyKPIFragment extends Fragment implements View.OnClickListener {
+ 
+-    private ImageView info_img;
+-
+     public MyKPIFragment() {
+     }
+ 
+@@ -32,21 +32,30 @@
+     }
+ 
+     private void initView(View view) {
+-        info_img = (ImageView) view.findViewById(R.id.img_info);
+-        info_img.setOnClickListener(this);
++        RelativeLayout layout_info = (RelativeLayout) view.findViewById(R.id.Layout_info);   //个人信息
++        RelativeLayout layout_about_Storm = (RelativeLayout) view.findViewById(R.id.Layout_about_Storm); //关于伺动
++        RelativeLayout layout_Set = (RelativeLayout) view.findViewById(R.id.Layout_Set); //设置
++        layout_about_Storm.setOnClickListener(this);
++        layout_Set.setOnClickListener(this);
++        layout_info.setOnClickListener(this);
+ 
+     }
+ 
+     @Override
+     public void onClick(View v) {
+-        Intent intent;
++        Intent intent = null;
+         switch (v.getId()) {
+-            case R.id.img_info:
++            case R.id.Layout_info:
+-                intent=new Intent(getActivity(), InfoActivity.class);
++                intent = new Intent(getActivity(), InfoActivity.class);
+-                startActivity(intent);
+-                getActivity().overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+-
+                 break;
++            case R.id.Layout_about_Storm:
++                intent = new Intent(getActivity(), AboutStormActivity.class);
++                break;
++            case R.id.Layout_Set:
++                intent = new Intent(getActivity(), SetActivity.class);
++                break;
+         }
++        startActivity(intent);
++        getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+     }
+-}
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_feed_back.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_feed_back.xml	(revision )
++++ app/src/main/res/layout/activity_feed_back.xml	(revision )
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:paddingLeft="16dp"
++    android:paddingRight="16dp"
++    android:paddingTop="16dp">
++
++
++    <EditText
++        android:id="@+id/ed_feedback"
++        android:layout_width="match_parent"
++        android:layout_height="220dp"
++        android:background="@drawable/bg_ed"
++        android:gravity="top|start"
++        android:hint="请输入您的反馈意见（120字以内）"
++        android:maxLength="120"
++        android:padding="4dp"
++        android:textSize="14sp" />
++
++    <Button
++        android:id="@+id/btn_feedback"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_alignParentRight="true"
++        android:layout_below="@+id/ed_feedback"
++        android:layout_marginTop="8dp"
++        android:background="@drawable/bg_btn"
++        android:text="提交"
++        android:textColor="#fff"
++        android:textSize="14sp" />
++</RelativeLayout>

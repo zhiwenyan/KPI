@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9119fa</color>
+    <color name="colorPrimaryDark">#9119fa</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorbtnPress">#9119fa</color>
+    <color name="colorbtnNormal">#a545fa</color>
+    <color name="colorLayoutPress">#e2e2e2</color>
+
+    <color name="color_tv_white">#fff</color>
+    <color name="color_tv_gray">#afafaf</color>
+    <color name="transparent">@android:color/transparent</color>
+</resources>

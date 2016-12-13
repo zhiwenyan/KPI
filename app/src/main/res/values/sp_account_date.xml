@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="date">
+        <item>7日</item>
+        <item>10日</item>
+        <item>30日</item>
+    </array>
+</resources>

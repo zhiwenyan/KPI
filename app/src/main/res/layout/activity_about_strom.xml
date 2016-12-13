@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed"
+    android:orientation="vertical"
+    tools:context="com.kpi.activity.AboutStormActivity">
+
+
+    <TextView
+        android:id="@+id/tv_Storm_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="伺动简介"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+    <TextView
+        android:id="@+id/tv_about_Storm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="关于伺动"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+    <TextView
+        android:id="@+id/tv_storm_TiaoKuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="使用条款"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+
+    <TextView
+        android:id="@+id/tv_storm_gradle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="去评分"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+    <TextView
+        android:id="@+id/tv_storm_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="新版本"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+    <TextView
+        android:id="@+id/tv_storm_advice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_mykpi_item"
+        android:padding="16dp"
+        android:text="反馈"
+        android:textColor="#4e4e4e"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d9d8d8" />
+
+
+</LinearLayout>

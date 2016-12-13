@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e6e6e6"
+    android:orientation="horizontal">
+
+
+    <RadioGroup
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/bg_rg1"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="智码罗盘"
+            android:textColor="@drawable/bg_textcolor" />
+
+        <RadioButton
+            android:id="@+id/rb_redian"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bg_rg2"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="消息"
+            android:textColor="@drawable/bg_textcolor" />
+
+        <RadioButton
+            android:id="@+id/rb_shiting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bg_rg3"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="工作中"
+            android:textColor="@drawable/bg_textcolor" />
+
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_shezhi"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:button="@null"-->
+        <!--android:drawableTop="@mipmap/ic_launcher"-->
+        <!--android:gravity="center"-->
+        <!--android:text="联络伺动"-->
+        <!--android:textColor="@drawable/bg_textcolor" />-->
+
+        <RadioButton
+            android:id="@+id/rb_MyKPI"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bg_rg4"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="我的智码"
+            android:textColor="@drawable/bg_textcolor" />
+    </RadioGroup>
+
+</LinearLayout>

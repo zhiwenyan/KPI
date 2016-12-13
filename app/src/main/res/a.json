@@ -1,0 +1,135 @@
+{
+  "data": {
+    "datato": "2016-03-23",
+    "datafrom": "2016-03-13",
+    "imgType": "1",
+    "data": null,
+    "searchType": "0",
+    "msg": "成功",
+    "lstKpiUrl": "/image/output/openId/20160323/KPI002_20160323144001.gif",
+    "dataListDetail": [
+      {
+        "DDate": "20160313",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 3270,
+        "customerCount": 10441,
+        "database": null,
+        "dateMd": "03/13",
+        "dateYmd": "2016/03/13",
+        "scanCount": 23633
+      },
+      {
+        "DDate": "20160314",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4303,
+        "customerCount": 12098,
+        "database": null,
+        "dateMd": "03/14",
+        "dateYmd": "2016/03/14",
+        "scanCount": 25072
+      },
+      {
+        "DDate": "20160315",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4336,
+        "customerCount": 10405,
+        "database": null,
+        "dateMd": "03/15",
+        "dateYmd": "2016/03/15",
+        "scanCount": 22204
+      },
+      {
+        "DDate": "20160316",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4539,
+        "customerCount": 13404,
+        "database": null,
+        "dateMd": "03/16",
+        "dateYmd": "2016/03/16",
+        "scanCount": 30065
+      },
+      {
+        "DDate": "20160317",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4549,
+        "customerCount": 14722,
+        "database": null,
+        "dateMd": "03/17",
+        "dateYmd": "2016/03/17",
+        "scanCount": 34348
+      },
+      {
+        "DDate": "20160318",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4894,
+        "customerCount": 15207,
+        "database": null,
+        "dateMd": "03/18",
+        "dateYmd": "2016/03/18",
+        "scanCount": 35343
+      },
+      {
+        "DDate": "20160319",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4986,
+        "customerCount": 16398,
+        "database": null,
+        "dateMd": "03/19",
+        "dateYmd": "2016/03/19",
+        "scanCount": 38168
+      },
+      {
+        "DDate": "20160320",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4058,
+        "customerCount": 14882,
+        "database": null,
+        "dateMd": "03/20",
+        "dateYmd": "2016/03/20",
+        "scanCount": 34366
+      },
+      {
+        "DDate": "20160321",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4786,
+        "customerCount": 16433,
+        "database": null,
+        "dateMd": "03/21",
+        "dateYmd": "2016/03/21",
+        "scanCount": 38266
+      },
+      {
+        "DDate": "20160322",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 4521,
+        "customerCount": 15953,
+        "database": null,
+        "dateMd": "03/22",
+        "dateYmd": "2016/03/22",
+        "scanCount": 37826
+      },
+      {
+        "DDate": "20160323",
+        "DDatefrom": null,
+        "DDateto": null,
+        "addCount": 2210,
+        "customerCount": 8484,
+        "database": null,
+        "dateMd": "03/23",
+        "dateYmd": "2016/03/23",
+        "scanCount": 19660
+      }
+    ]
+  },
+  "success": true
+}

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.kpi.activity.BeginHelpActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/help_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/tv_info_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="新手帮助"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/help_toolbar">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/mess_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/mess_login_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="登录相关"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mess_login_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="更多"
+                    android:textColor="#00b7ff"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mess_login_content_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_login_title"
+                    android:layout_marginTop="10dp"
+                    android:text="1.@@@@@@@@@@@" />
+
+                <TextView
+                    android:id="@+id/mess_login_content_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_login_content_1"
+                    android:layout_marginTop="10dp"
+                    android:text="2.@@@@@" />
+
+                <TextView
+                    android:id="@+id/mess_login_content_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_login_content_2"
+                    android:layout_marginTop="10dp"
+                    android:text="3.@@@@@@@@@@@" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#ededed" />
+
+            <RelativeLayout
+                android:id="@+id/mess_function"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/mess_function_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="功能相关"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mess_function_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="更多"
+                    android:textColor="#00b7ff"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mess_function_content_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_function_title"
+                    android:layout_marginTop="10dp"
+                    android:text="1.@@@@@@@@@@@" />
+
+                <TextView
+                    android:id="@+id/mess_function_content_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_function_content_1"
+                    android:layout_marginTop="10dp"
+                    android:text="2.@@@@@" />
+
+                <TextView
+                    android:id="@+id/mess_function_content_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_function_content_2"
+                    android:layout_marginTop="10dp"
+                    android:text="3.@@@@@@@@@@@" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#ededed" />
+
+            <RelativeLayout
+                android:id="@+id/mess_operate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/mess_operate_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="操作技巧"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mess_operate_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="更多"
+                    android:textColor="#00b7ff"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mess_operate_content_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_operate_title"
+                    android:layout_marginTop="10dp"
+                    android:text="1.@@@@@@@@@@@" />
+
+                <TextView
+                    android:id="@+id/mess_operate_content_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_operate_content_1"
+                    android:layout_marginTop="10dp"
+                    android:text="2.@@@@@" />
+
+                <TextView
+                    android:id="@+id/mess_operate_content_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mess_operate_content_2"
+                    android:layout_marginTop="10dp"
+                    android:text="3.@@@@@@@@@@@" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="#d9d8d8" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="area_sort">
+        <item>扫码件数</item>
+        <item>扫码件数环比</item>
+        <item>扫码人数</item>
+        <item>扫码人数环比</item>
+    </array>
+
+</resources>
